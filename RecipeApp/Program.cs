@@ -14,6 +14,7 @@ namespace RecipeApp
 
             while (true)
             {
+                ///Output commands for the user.
                 Console.WriteLine("Select the following option:");
                 Console.WriteLine("1. Would you like to add new recipe?");
                 Console.WriteLine("2. Would you like to display recipe?");
@@ -33,25 +34,25 @@ namespace RecipeApp
                     case 2:
                         recipe.RecipeDisplay();
                         break;
-
+                    
                     case 3:
                         Console.Write("Type the scale factor required: ");
                         double factor = double.Parse(Console.ReadLine());
                         recipe.RecipeScale(factor);
                         break;
-
+                    ///Resets the quantity input
                     case 4:
                         recipe.QuantityReset();
                         break;
-
+                    ///Clears the recipe for user to start a fresh
                     case 5:
                         recipe.RecipeCleared();
                         break;
-
+                    ///Exit Application
                     case 6:
                         Environment.Exit(0);
                         break;
-
+                    ///Warning message gets displayed when user enters an input
                     default:
                         Console.WriteLine("Input not valid!");
                         break;
