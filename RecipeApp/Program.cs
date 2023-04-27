@@ -40,19 +40,19 @@ namespace RecipeApp
                         double factor = double.Parse(Console.ReadLine());
                         recipe.RecipeScale(factor);
                         break;
-                    ///Resets the quantity input
+                    ///Resets the quantity input.
                     case 4:
                         recipe.QuantityReset();
                         break;
-                    ///Clears the recipe for user to start a fresh
+                    ///Clears the recipe for user to start a fresh.
                     case 5:
                         recipe.RecipeCleared();
                         break;
-                    ///Exit Application
+                    ///Exit Application.
                     case 6:
                         Environment.Exit(0);
                         break;
-                    ///Warning message gets displayed when user enters an input
+                    ///Warning message gets displayed when user enters an input.
                     default:
                         Console.WriteLine("Input not valid!");
                         break;
