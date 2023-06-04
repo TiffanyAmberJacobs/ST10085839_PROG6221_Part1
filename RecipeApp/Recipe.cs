@@ -8,84 +8,52 @@ namespace RecipeApp
 {
     internal class Recipe
     {
-        private string[] ingredient;
-        private double[] quantity;
-        private string[] unit;
-        private string[] step;
+        private List<Ingredient> ingredients = new List<Ingredient>(); // A list to store the ingredients
+        private List<string> steps = new List<string>(); // A list to store the steps
 
-        public void AddRecipe()
+        public string Name { get; set; } // The name of the recipe
+
+        public void AddIngredient(Ingredient ingredient)
         {
-            Console.Write("Type the amount of ingredients to be used: ");
-            int numIngredient = int.Parse(Console.ReadLine());
+            ingredients.Add(ingredient); // Add the ingredient to the list of ingredients
+        }
 
-            ingredient = new string[numIngredient];
-            quantity = new double[numIngredient];
-            unit = new string[numIngredient];
-
-            for (int i = 0; i < numIngredient; i++)
-            {
-                Console.Write($"Type the ingredients names {i + 1}: ");
-                ingredient[i] = Console.ReadLine();
-
-                Console.Write($"Type the quantity of {ingredient[i]}: ");
-                quantity[i] = double.Parse(Console.ReadLine());
-
-                Console.Write($"Type the unit of measurement for {quantity[i]} {ingredient[i]}: ");
-                unit[i] = Console.ReadLine();
-            }
-
-            Console.Write("Type the following number of steps required: ");
-            int numSteps = int.Parse(Console.ReadLine());
-
-            step = new string[numSteps];
-
-            for (int i = 0; i < numSteps; i++)
-            {
-                Console.Write($"Type step {i + 1}: ");
-                step[i] = Console.ReadLine();
-            }
+        public void AddStep(string step)
+        {
+            steps.Add(step); // Add the step to the list of steps
         }
 
         public void RecipeDisplay()
         {
+            Console.WriteLine($"Recipe: {Name}"); // Display the name of the recipe
+
             Console.WriteLine("Ingredients required:");
-            for (int i = 0; i < ingredient.Length; i++)
+            for (int i = 0; i < ingredients.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {quantity[i]} {unit[i]} {ingredient[i]}");
+                Console.WriteLine($"{i + 1}. {ingredients[i]}"); // Display the details of each ingredient
             }
 
-            Console.WriteLine("Following steps required:");
-            for (int i = 0; i < step.Length; i++)
+            Console.WriteLine("Steps required:");
+            for (int i = 0; i < steps.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {step[i]}");
+                Console.WriteLine($"{i + 1}. {steps[i]}"); // Display each step
             }
-        }
 
-        public void RecipeScale(double factor)
-        {
-            for (int i = 0; i < quantity.Length; i++)
+            int totalCalories = ingredients.Sum(i => i.Calories); // Calculate the total calories of the ingredients
+            Console.WriteLine($"Total Calories: {totalCalories}");
+
+            if (totalCalories > 300)
             {
-                quantity[i] *= factor;
+                Console.WriteLine("Warning: This recipe exceeds 300 calories!"); // Display a warning if the total calories exceed 300
             }
-        }
-
-        public void QuantityReset()
-        {
-            for (int i = 0; i < quantity.Length; i++)
-            {
-                quantity[i] /= 2;
-            }
-        }
-
-        public void RecipeCleared()
-        {
-            ingredient = null;
-            quantity = null;
-            unit = null;
-            step = null;
         }
     }
 }
+
+
+
+
+
 /*
  * Webpage name:Stackoverflow
  * Date accessed:24 April 2023
